@@ -26,7 +26,7 @@ func TestResult(t *testing.T) {
 	}
 
 	// Test UnwrapOrDefault
-	defaultResult := Result[int, string]{}
+	defaultResult := NewErr[int, string]("")
 	if defaultResult.UnwrapOrDefault() != 0 {
 		t.Errorf("Expected defaultResult to unwrap to default int value 0")
 	}
@@ -40,6 +40,7 @@ func TestResult(t *testing.T) {
 	}
 
 	// Test UnwrapErrOr
+	defaultResult = NewOk[int, string](0)
 	if errResult.UnwrapErrOr("default") != "error" {
 		t.Errorf("Expected errResult to unwrap to 'error'")
 	}
